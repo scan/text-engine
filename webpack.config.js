@@ -1,5 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
+const { ESBuildMinifyPlugin } = require('esbuild-loader');
 const path = require('path');
 
 module.exports = {
@@ -11,7 +11,7 @@ module.exports = {
         test: /\.(j|t)sx?$/,
         loader: 'esbuild-loader',
         options: {
-          loader: 'jsx',
+          loader: 'tsx',
           target: 'es2015',
         },
         exclude: /node_modules/,
@@ -31,10 +31,12 @@ module.exports = {
       title: 'text-engine',
       inject: 'body',
     }),
-    new WorkboxPlugin.GenerateSW({
-      clientsClaim: true,
-      skipWaiting: true,
-      maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
-    }),
   ],
+  optimization: {
+    minimizer: [
+      new ESBuildMinifyPlugin({
+        target: 'es2015', // Syntax to compile to (see options below for possible values)
+      }),
+    ],
+  },
 };
