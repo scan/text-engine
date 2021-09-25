@@ -22,6 +22,13 @@ module.exports = {
         },
         exclude: /node_modules/,
       },
+      {
+        test: /\.(png|jpe?g|gif|svg|webp)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[contenthash].[ext]'
+        }
+      }
     ],
   },
   output: {
@@ -43,13 +50,21 @@ module.exports = {
     new FaviconsWebpackPlugin(path.join(srcDir, 'logo.svg')),
   ],
   optimization: {
+    moduleIds: 'deterministic',
     runtimeChunk: 'single',
     splitChunks: {
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendors',
+          priority: -10,
           chunks: 'all',
+          reuseExistingChunk: true,
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
         },
       },
     },
