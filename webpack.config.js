@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-var-requires */
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { SubresourceIntegrityPlugin } = require('webpack-subresource-integrity');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
@@ -18,7 +20,7 @@ module.exports = {
         loader: 'esbuild-loader',
         options: {
           loader: 'tsx',
-          target: 'es2015',
+          target: 'es2015'
         },
         exclude: /node_modules/,
       },
@@ -43,11 +45,21 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(srcDir, 'index.html'),
-      title: 'text-engine',
+      title: 'Text Engine',
       inject: 'body',
     }),
     new SubresourceIntegrityPlugin(),
-    new FaviconsWebpackPlugin(path.join(srcDir, 'logo.svg')),
+    new FaviconsWebpackPlugin({
+      logo: path.join(srcDir, 'logo.svg'),
+      manifest: {
+        lang: 'en-GB',
+        name: 'Text Engine',
+        short_name: 'TextEngine',
+        display: 'fullscreen',
+        background_color: '#303030',
+        theme_color: '#d84315'
+      }
+    }),
   ],
   optimization: {
     moduleIds: 'deterministic',

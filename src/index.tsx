@@ -1,21 +1,21 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import CssBaseline from '@mui/material/CssBaseline';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { Provider } from 'react-redux';
 
+import { store } from './store';
+import Theme from './components/Theme';
 import App from './App';
-
-const theme = createTheme({});
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
+    <Provider store={store}>
       <Router>
-        <App />
+        <Theme>
+          <App />
+        </Theme>
       </Router>
-    </ThemeProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
