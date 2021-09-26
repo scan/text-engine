@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { SubresourceIntegrityPlugin } = require('webpack-subresource-integrity');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const { ESBuildMinifyPlugin } = require('esbuild-loader');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const path = require('path');
 
@@ -20,7 +21,7 @@ module.exports = {
         loader: 'esbuild-loader',
         options: {
           loader: 'tsx',
-          target: 'es2015'
+          target: 'es2015',
         },
         exclude: /node_modules/,
       },
@@ -28,19 +29,24 @@ module.exports = {
         test: /\.(png|jpe?g|gif|svg|webp)$/,
         loader: 'file-loader',
         options: {
-          name: '[name].[contenthash].[ext]'
-        }
-      }
+          name: '[name].[contenthash].[ext]',
+        },
+      },
     ],
   },
   output: {
     filename: '[name].[contenthash].js',
     path: outDir,
     crossOriginLoading: 'anonymous',
-    clean: true
+    clean: true,
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    plugins: [
+      new TsconfigPathsPlugin({
+        extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+      }),
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -57,8 +63,8 @@ module.exports = {
         short_name: 'TextEngine',
         display: 'fullscreen',
         background_color: '#303030',
-        theme_color: '#d84315'
-      }
+        theme_color: '#d84315',
+      },
     }),
   ],
   optimization: {

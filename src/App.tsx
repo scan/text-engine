@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, Switch, Route } from 'react-router-dom';
 
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -7,6 +7,8 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Icon from '@mui/material/Icon';
+
+import ProjectsView from '~/views/ProjectsView';
 
 const App: FunctionComponent = () => {
   return (
@@ -30,7 +32,11 @@ const App: FunctionComponent = () => {
         </Toolbar>
       </AppBar>
       <Container>
-        <Typography variant="h1">Hello World</Typography>
+        <Switch>
+          <Route path="/">
+            <ProjectsView />
+          </Route>
+        </Switch>
       </Container>
     </>
   );
