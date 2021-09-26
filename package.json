@@ -51,7 +51,8 @@
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
     "test": "jest --passWithNoTests",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit"
   },
   "eslintConfig": {
     "extends": [
