@@ -66,7 +66,7 @@ const repository = {
     }
     return undefined;
   },
-  saveProject: (project: Project) => {
+  saveProject: async (project: Project) => {
     const id = project.id;
 
     window.localStorage.setItem(
