@@ -4009,7 +4009,7 @@ favicons-webpack-plugin@^5.0.2:
 
 favicons@^6.2.2:
   version "6.2.2"
-  resolved "https://registry.npmjs.org/favicons/-/favicons-6.2.2.tgz"
+  resolved "https://registry.yarnpkg.com/favicons/-/favicons-6.2.2.tgz#8d9316647cfe202afda9020f0c47ec2d8f64eaad"
   integrity sha512-qhvFqbhlXA/JYIDYuxTrE4uT9rcpTCrWvF3UG0GxBoLl/XgFBBTrZkQvASrkMebSwDCJ9kKGypRWIbvoRZLBsw==
   dependencies:
     clone "^2.1.2"

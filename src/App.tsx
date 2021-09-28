@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Link as RouterLink, Switch, Route } from 'react-router-dom';
+import { Link as RouterLink, Switch, Route, Redirect } from 'react-router-dom';
 
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -33,9 +33,10 @@ const App: FunctionComponent = () => {
       </AppBar>
       <Container>
         <Switch>
-          <Route path="/">
+          <Route path="/projects">
             <ProjectsView />
           </Route>
+          <Redirect path="*" to="/projects" />
         </Switch>
       </Container>
     </>
