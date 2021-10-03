@@ -27,3 +27,5 @@ export const selectProjects = (state: RootState): Array<Project> => Object.value
 export const selectProject = (id: ProjectID) => (state: RootState): Project | undefined => state.projects.projects[id];
 
 export default projectsSlice.reducer;
+
+export const { saveProject, removeProject } = projectsSlice.actions;

@@ -1,9 +1,11 @@
+import { v4 as uuid } from 'uuid';
+
 export type ProjectID = string;
 
 export interface Project {
   id: ProjectID;
   name: string;
-  description: string;
+  description?: string;
   nodes: Record<NodeID, Node>;
   createdAt: number;
   start?: NodeID;
@@ -91,3 +93,12 @@ const repository = {
 } as const;
 
 export default repository;
+
+export const newProject = (name: string, description?: string): Project => ({
+  id: uuid(),
+  name,
+  description,
+  nodes: {},
+  createdAt: Date.now(),
+  start: undefined,
+});
